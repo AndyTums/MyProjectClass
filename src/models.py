@@ -1,12 +1,12 @@
 class Product:
     """Класс для прдставления продуктов"""
 
-    name: str  # Наименование продукта
-    description: str  # Описание продукта
-    price: float  # Цена продукта
-    quantity: float  # Количество продукта
+    name: str
+    description: str
+    price: float
+    quantity: float
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         """Метод для инициализации экземпляра класса Product, задаем значения атрибутам экземпляра"""
         self.name = name
         self.description = description
@@ -17,14 +17,14 @@ class Product:
 class Category:
     """Клас для предоставления категории"""
 
-    name: str  # Наименование продукта
-    description: str  # Описание продукта
-    products: list  # Список продуктов
+    name: str
+    description: str
+    products: list
 
     category_count = 0  # Счетчик количества категорий
     product_count = 0  # Счетчик количества продуктов
 
-    def __init__(self, name, description, products):
+    def __init__(self, name: str, description: str, products: list):
         """Метод для инициализации класса Category, задаем значения атрибутам экземпляра"""
         self.name = name
         self.description = description
