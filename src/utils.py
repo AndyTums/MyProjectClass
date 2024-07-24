@@ -23,9 +23,3 @@ def load_info_from_json(info):
         list_info.append(Category(**value))
 
     return list_info
-
-
-# reding_file = read_json("../data/products.json")
-# raw = load_info_from_json(reding_file)
-# print(raw[0].name)
-# print(raw[0].products)
