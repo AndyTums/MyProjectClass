@@ -21,11 +21,11 @@ class Product:
     def price(self, new_price: int):
         """Сеттер изменяет цену продукта, если ниже требует потверждения"""
         if new_price < self.__price:
-            confirmation_price = input(f"Новая цена: {new_price} ниже {self.__price}, хотите изменить?(YES/NO)").lower()
+            confirmation_price = input(f"Новая цена: {new_price} ниже {self.__price}, "
+                                       f"хотите изменить?(YES/NO)").lower()
             if "y" in confirmation_price:
                 self.__price = new_price
-            else:
-                pass
+        self.__price = new_price
 
 
 class Category:
