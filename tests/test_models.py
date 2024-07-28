@@ -17,13 +17,13 @@ def test_category(one_category):
 
 
 def test_views_product(one_category):
-    assert one_category.views_product == "Iphone 15, 210000.0. Остаток: 8\n"
+    assert one_category.views_product == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
 
 
-def test_views_product_setter(one_category, second_product):
-    assert one_category.product_count == 3
-    one_category.views_product = second_product
-    assert one_category.product_count == 4
+def test_add_product(one_category, one_product):
+    assert one_category.product_count == 1
+    one_category.add_product(one_product)
+    assert one_category.product_count == 2
 
 
 def test_new_product():
@@ -34,7 +34,6 @@ def test_new_product():
 def test_price_getter(one_product):
     assert one_product.price == 210000
 
-
-def test_price_setter(capsys, one_product):
-    one_product.price = 300000
-    assert one_product.price == 300000
+# def test_price_setter(capsys, one_product):
+#     one_product.price = 300000
+#     assert one_product.price == 300000

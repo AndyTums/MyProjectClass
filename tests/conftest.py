@@ -9,7 +9,9 @@ def one_product():
 
 @pytest.fixture
 def second_product():
-    return Product("Samsung", "256GB, White", 40000.0, 2)
+    return Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 5})
 
 
 @pytest.fixture

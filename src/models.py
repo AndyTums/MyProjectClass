@@ -9,7 +9,12 @@ class Product:
         self.quantity = quantity
 
     @classmethod
-    def new_product(cls, name: str, description: str, price: float, quantity: int):
+    def new_product(cls, work_dict):
+        name = work_dict["name"]
+        description = work_dict["description"]
+        price = work_dict["price"]
+        quantity = work_dict["quantity"]
+
         return cls(name, description, price, quantity)
 
     @property
@@ -20,12 +25,13 @@ class Product:
     @price.setter
     def price(self, new_price: int):
         """Сеттер изменяет цену продукта, если ниже требует потверждения"""
-        if new_price < self.__price:
+        if new_price <= 0:
+            print("Цена должна быть положительной или не равно 0")
+        else:
             confirmation_price = input(f"Новая цена: {new_price} ниже {self.__price}, "
                                        f"хотите изменить?(YES/NO)").lower()
             if "y" in confirmation_price:
                 self.__price = new_price
-        self.__price = new_price
 
 
 class Category:
@@ -42,17 +48,16 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
+    def add_product(self, product: Product):
+        """Класс метод добавляет новый продукт в список продуктов категории"""
+        self.__products.append(product)
+        Category.product_count += 1
+
     @property
     def views_product(self):
         """Метод возвращает описание товара типа: Имя, цена, остаток."""
         views_str = ""
         for i in self.__products:
-            views_str += f"{i.name}, {i.price}. Остаток: {i.quantity}\n"
+            views_str += f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт.\n"
 
         return views_str
-
-    @views_product.setter
-    def views_product(self, product: Product):
-        """Сеттер добавляет новый продукт в список продуктов категории"""
-        self.__products.append(product)
-        Category.product_count += 1
