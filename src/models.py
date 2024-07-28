@@ -10,6 +10,7 @@ class Product:
 
     @classmethod
     def new_product(cls, work_dict):
+        """Метод возвращает класс Продукта из списка словарей"""
         name = work_dict["name"]
         description = work_dict["description"]
         price = work_dict["price"]
