@@ -1,7 +1,7 @@
 import json
 import os
 
-from src.models import Product, Category
+from src.models import Category, Product
 
 
 def read_json(filename: str) -> dict:
@@ -12,7 +12,7 @@ def read_json(filename: str) -> dict:
     return info
 
 
-def load_info_from_json(info):
+def load_info_from_json(info: str) -> list:
     """Функция создает список из класса Category в которых лежат продукты класса Product"""
     list_info = []
     for value in info:
