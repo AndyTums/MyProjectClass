@@ -12,7 +12,7 @@ def read_json(filename: str) -> dict:
     return info
 
 
-def load_info_from_json(info: str) -> list:
+def load_info_from_json(info):
     """Функция создает список из класса Category в которых лежат продукты класса Product"""
     list_info = []
     for value in info:
