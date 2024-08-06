@@ -8,6 +8,14 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        """Метод возвращает описание товара типа: Имя, цена, остаток."""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.\n"
+
+    def __add__(self, other):
+        """Метод складывает количество продуктов и их общую стоимость с другим продуктом"""
+        return self.quantity * self.price + other.quantity * other.price
+
     @classmethod
     def new_product(cls, work_dict):
         """Метод возвращает класс Продукта из списка словарей"""
@@ -49,16 +57,20 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products)
 
-    def add_product(self, product: Product):
-        """Класс метод добавляет новый продукт в список продуктов категории"""
-        self.__products.append(product)
-        Category.product_count += 1
+    def __str__(self):
+        """Метод выводит строковое значение наименование категории и общее количество товара на складе"""
+        value = 0
+        for i in self.__products:
+            value += i.quantity
+        return f"Категория {self.name}, количество продуктов: {value} шт."
 
     @property
     def views_product(self):
         """Метод возвращает описание товара типа: Имя, цена, остаток."""
-        views_str = ""
         for i in self.__products:
-            views_str += f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт.\n"
+            return f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт.\n"
 
-        return views_str
+    def add_product(self, product: Product):
+        """Класс метод добавляет новый продукт в список продуктов категории"""
+        self.__products.append(product)
+        Category.product_count += 1

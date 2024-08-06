@@ -1,23 +1,13 @@
 from src.models import Product
 
 
+# ТЕСТЫ НА ДЛЯ КЛАССА PRODUCT
+
 def test_product(one_product):
     assert one_product.name == "Iphone 15"
     assert one_product.description == "512GB, Gray space"
     assert one_product.price == 210000.0
     assert one_product.quantity == 8
-
-
-def test_category(one_category):
-    assert one_category.name == "Смартфоны"
-    assert one_category.description == ("Смартфоны, как средство не только коммуникации, "
-                                        "но и получения дополнительных функций для удобства жизни")
-    assert one_category.category_count == 1
-    assert one_category.product_count == 1
-
-
-def test_views_product(one_category):
-    assert one_category.views_product == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
 
 
 def test_add_product(one_category, one_product):
@@ -34,6 +24,28 @@ def test_new_product():
 def test_price_getter(one_product):
     assert one_product.price == 210000
 
-# def test_price_setter(capsys, one_product):
-#     one_product.price = 300000
-#     assert one_product.price == 300000
+
+def test_str_product(one_product):
+    assert str(one_product) == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+
+
+def test_summ_product(one_product, second_product):
+    assert (one_product + second_product) == 2580000.0
+
+
+# ТЕСТЫ ДЛЯ КЛАССА CATEGORY
+
+def test_category(one_category):
+    assert one_category.name == "Смартфоны"
+    assert one_category.description == ("Смартфоны, как средство не только коммуникации, "
+                                        "но и получения дополнительных функций для удобства жизни")
+    assert one_category.category_count == 1
+    assert one_category.product_count == 1
+
+
+def test_views_product(one_category):
+    assert one_category.views_product == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+
+
+def test_str_category(one_category):
+    assert str(one_category) == "Категория Смартфоны, количество продуктов: 8 шт."
