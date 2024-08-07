@@ -14,7 +14,9 @@ class Product:
 
     def __add__(self, other):
         """Метод складывает количество продуктов и их общую стоимость с другим продуктом"""
-        return self.quantity * self.price + other.quantity * other.price
+        if isinstance(other, type(self)):
+            return self.quantity * self.price + other.quantity * other.price
+        raise TypeError("Товары разных категорий не могут быть сложены!")
 
     @classmethod
     def new_product(cls, work_dict):
@@ -43,6 +45,29 @@ class Product:
                 self.__price = new_price
 
 
+class Smartphone(Product):
+    """ Дочерний класс для работы со смартфонами """
+
+    def __init__(self, name: str, description: str, price: float, quantity: int, efficiency: float, model: str,
+                 memory: int, color: str):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class LawnGrass(Product):
+    """ Дочерний класс для работы с газонной травой """
+
+    def __init__(self, name: str, description: str, price: float, quantity: int, country: str, germination_period: str,
+                 color: str):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+
 class Category:
     """Клас для предоставления категории"""
 
@@ -65,12 +90,14 @@ class Category:
         return f"Категория {self.name}, количество продуктов: {value} шт."
 
     @property
-    def views_product(self):
+    def products(self):
         """Метод возвращает описание товара типа: Имя, цена, остаток."""
         for i in self.__products:
             return f"{i.name}, {i.price} руб. Остаток: {i.quantity} шт.\n"
 
     def add_product(self, product: Product):
         """Класс метод добавляет новый продукт в список продуктов категории"""
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        raise TypeError

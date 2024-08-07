@@ -1,3 +1,5 @@
+import pytest
+
 from src.models import Product
 
 
@@ -44,8 +46,47 @@ def test_category(one_category):
 
 
 def test_views_product(one_category):
-    assert one_category.views_product == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+    assert one_category.products == "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
 
 
 def test_str_category(one_category):
     assert str(one_category) == "Категория Смартфоны, количество продуктов: 8 шт."
+
+
+def test_smartphone(one_smartphone):
+    assert one_smartphone.name == "Samsung Galaxy S23 Ultra"
+    assert one_smartphone.description == "256GB, Серый цвет, 200MP камера"
+    assert one_smartphone.price == 180000.0
+    assert one_smartphone.quantity == 5
+    assert one_smartphone.efficiency == 95.5
+    assert one_smartphone.model == "S23 Ultra"
+    assert one_smartphone.memory == 256
+    assert one_smartphone.color == "Серый"
+
+
+def test_sum_smartphone(one_smartphone, second_smartphone):
+    assert one_smartphone + second_smartphone == 2580000.0
+
+
+def test_sum_error(one_smartphone, one_lawngrass):
+    with pytest.raises(TypeError):
+        assert one_smartphone + one_lawngrass
+
+
+def test_lawngrass(one_lawngrass):
+    assert one_lawngrass.name == "Газонная трава"
+    assert one_lawngrass.description == "Элитная трава для газона"
+    assert one_lawngrass.price == 500.0
+    assert one_lawngrass.quantity == 20
+    assert one_lawngrass.country == "Россия"
+    assert one_lawngrass.germination_period == "7 дней"
+    assert one_lawngrass.color == "Зеленый"
+
+
+def test_sum_lawngrass(one_lawngrass, second_lawngrass):
+    assert one_lawngrass + second_lawngrass == 16750.0
+
+
+def test_sum_error_grass(one_smartphone, one_lawngrass):
+    with pytest.raises(TypeError):
+        assert one_lawngrass + 1
