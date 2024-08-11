@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
+
+
+class Product(BaseProduct, PrintMixin):
     """Класс для предоставления продуктов"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -7,6 +11,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self):
         """Метод возвращает описание товара типа: Имя, цена, остаток."""
