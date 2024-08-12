@@ -1,6 +1,6 @@
 import pytest
 
-from src.models import Product
+from src.models import Product, Category
 
 
 # ТЕСТЫ НА ДЛЯ КЛАССА PRODUCT
@@ -90,3 +90,22 @@ def test_sum_lawngrass(one_lawngrass, second_lawngrass):
 def test_sum_error_grass(one_smartphone, one_lawngrass):
     with pytest.raises(TypeError):
         assert one_lawngrass + 1
+
+
+def test_middle_price(one_product, third_product, category_without_product):
+    category = Category("Смартфоны",
+                        "Смартфоны, как средство не только коммуникации, "
+                        "но и получения дополнительных функций для удобства жизни",
+                        [one_product, third_product])
+    assert category.middle_price() == 120500.0
+    assert category_without_product.middle_price() == 0
+
+
+# def test_error_middle_price(one_product, fourth_product):
+#     category = Category("Смартфоны",
+#                         "Смартфоны, как средство не только коммуникации, "
+#                         "но и получения дополнительных функций для удобства жизни",
+#                         [])
+#     with pytest.raises(ZeroDivisionError):
+#         category.middle_price()
+
