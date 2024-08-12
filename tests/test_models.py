@@ -1,7 +1,6 @@
 import pytest
 
-from src.models import Product, Category
-
+from src.models import Category, Product
 
 # ТЕСТЫ НА ДЛЯ КЛАССА PRODUCT
 
@@ -99,13 +98,3 @@ def test_middle_price(one_product, third_product, category_without_product):
                         [one_product, third_product])
     assert category.middle_price() == 120500.0
     assert category_without_product.middle_price() == 0
-
-
-# def test_error_middle_price(one_product, fourth_product):
-#     category = Category("Смартфоны",
-#                         "Смартфоны, как средство не только коммуникации, "
-#                         "но и получения дополнительных функций для удобства жизни",
-#                         [])
-#     with pytest.raises(ZeroDivisionError):
-#         category.middle_price()
-
