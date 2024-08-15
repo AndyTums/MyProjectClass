@@ -1,4 +1,4 @@
-from src.models import Product, LawnGrass, Smartphone
+from src.models import LawnGrass, Product, Smartphone
 
 
 def test_print_mixing(capsys):
